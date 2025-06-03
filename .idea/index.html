@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Background Remover & Comparison</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Logo for top-left corner -->
+    <a href="/" class="logo" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
+        <!-- Logo Icon as SVG -->
+        <span style="display: flex;">
+    <svg width="40" height="30" viewBox="0 0 40 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="remove.bg logo mark">
+      <polygon points="20,5 36,14 20,23 4,14" fill="#5A6872"/>
+      <polygon points="20,25 36,16 36,14 20,23 4,14 4,16" fill="#C5CACE"/>
+    </svg>
+  </span>
+        <!-- Logo Text -->
+        <span style="font-size: 2rem; font-weight: 700; font-family: 'Segoe UI', Arial, sans-serif;">
+    <span style="color: #5A6872;">remove</span><span style="color: #C5CACE;">bg</span>
+  </span>
+    </a>
+</head>
+<body>
+    <!-- Banner & Upload Section -->
+    <section class="banner-upload-section">
+      <div class="banner-upload-inner">
+        <!-- Banner Left: Illustration and Title -->
+        <div class="banner-left">
+          <div class="hero-img-bg">
+            <img src="person-flowers.png" alt="Person holding flowers" />
+          </div>
+          <div class="banner-title-group">
+            <h1 class="main-title">Remove Image<br>Background</h1>
+            <div class="sub-title">100% Automatically and <span class="highlight-free">Free</span>.</div>
+          </div>
+        </div>
+        <!-- Banner Right: Upload Card -->
+        <div class="banner-right">
+          <div class="upload-card" id="upload-card">
+            <input type="file" id="file-upload" class="file-input" accept="image/*" hidden>
+            <label for="file-upload" class="upload-btn" tabindex="0">Upload Image</label>
+            <div class="upload-desc">
+              or drop a file,<br>paste image or <a href="#">URL</a>
+            </div>
+          </div>
+          <div class="sample-list">
+            <span class="sample-list-label">No image? Try one of these:</span>
+            <div class="sample-thumbs">
+              <img src="sample1.jpg" alt="Dog">
+              <img src="sample2.jpg" alt="Person">
+              <img src="sample3.jpg" alt="Car">
+              <img src="sample4.jpg" alt="Plant">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Image Comparison Section -->
+    <div class="container">
+        <h1>Image Comparison</h1>
+        <div class="image-compare">
+            <div class="image-container">
+                <!-- Background image (After) -->
+                <img src="after-image.jpg" alt="After" class="image-after">
+                <!-- Foreground image (Before) -->
+                <div class="image-before" style="clip-path: inset(0 50% 0 0);">
+                    <img src="before-image.jpg" alt="Before">
+                </div>
+                <!-- Movable slider button -->
+                <div class="slider" style="left: 50%;">
+                    <div class="slider-button">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M15 18L9 12L15 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M9 18L15 12L9 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <!-- Labels -->
+                <div class="label label-before">Before</div>
+                <div class="label label-after">After</div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
