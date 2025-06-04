@@ -107,7 +107,7 @@ class ImageCompare {
     animateToPosition(targetPosition) {
         const startPosition = this.currentPosition;
         const difference = targetPosition - startPosition;
-        const duration = 300;
+        const duration = 600;
         const startTime = performance.now();
 
         const animate = (currentTime) => {
