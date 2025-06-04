@@ -6,6 +6,7 @@ class ImageCompare {
         this.imageBefore = container.querySelector('.image-before');
         this.isDragging = false;
         this.currentPosition = 50; // 百分比
+        this.dragable = true;
 
         this.init();
     }
@@ -42,8 +43,14 @@ class ImageCompare {
         this.imageContainer.style.cursor = 'grabbing';
     }
 
+    setDragable(value) {
+        this.dragable = value;
+        // this.imageContainer.style.pointerEvents = 'none';
+        this.slider.querySelector(".slider-button").style.display = value ? 'block' : 'none';
+    }
+
     drag(e) {
-        if (!this.isDragging) return;
+        if (!this.isDragging || !this.dragable) return;
 
         e.preventDefault();
         
@@ -122,11 +129,13 @@ class ImageCompare {
     }
 }
 
+var ImageCompares = new Array();
+
 // 初始化
 document.addEventListener('DOMContentLoaded', () => {
     const compareContainers = document.querySelectorAll('.image-compare');
     compareContainers.forEach(container => {
-        new ImageCompare(container);
+        ImageCompares.push(new ImageCompare(container));
     });
 
     // 添加使用說明

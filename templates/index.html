@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Background Remover & Comparison</title>
+
+  <!-- 載入 JQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- 載入 Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- 載入 Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- 載入 Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+  <!-- 載入 Swiper CSS 和 JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <!-- Logo for top-left corner -->
+  <a href="/" class="logo" style="display: flex; align-items: center; gap: 10px; text-decoration: none">
+
+    <!-- Logo Text -->
+    <span style="font-size: 2rem; font-weight: 700; font-family: 'Segoe UI', Arial, sans-serif">
+      <span style="color: #5a6872">Remove Image Background</span>
+    </span>
+  </a>
+</head>
+
+<body>
+  <!-- Upload Section -->
+  <section class="banner-upload-section">
+
+    <!-- Image Comparison Section -->
+    <div class="container">
+      <h1>Image Comparison</h1>
+      <div class="image-compare main-compare">
+        <div class="image-container">
+          <!-- Background image (After) -->
+          <img src="/static/img/after-image.png" alt="After" class="image-after">
+          <!-- Foreground image (Before) -->
+          <div class="image-before" style="clip-path: inset(0 50% 0 0)">
+            <img src="/static/img/before-image.jpg" alt="Before">
+          </div>
+          <!-- Movable slider button -->
+          <div class="slider" style="left: 50%">
+            <div class="slider-button">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M15 18L9 12L15 6" stroke="white" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M9 18L15 12L9 6" stroke="white" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+          <!-- Labels -->
+          <div class="label label-before">Before</div>
+          <div class="label label-after">After</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="banner-upload-inner">
+      <!-- Upload Section -->
+      <div class="banner-right">
+        <div class="upload-card" id="upload-card">
+          <div class="image-drop-area">
+            <div class="text-center">
+              <i class="fas fa-cloud-upload-alt fa-3x mb-3"></i>
+              <div class="upload-desc">
+                drop a file,<br>paste image or <a href="#">URL</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sample-list">
+          <span class="sample-list-label">No image? Try one of these:</span>
+          <div class="sample-thumbs">
+            <img src="sample1.jpg" alt="Dog">
+            <img src="sample2.jpg" alt="Person">
+            <img src="sample3.jpg" alt="Car">
+            <img src="sample4.jpg" alt="Plant">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="/static/js/script.js"></script>
+  <script src="/static/js/upload.js"></script>
+
+</body>
+
+</html>
