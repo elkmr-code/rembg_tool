@@ -38,17 +38,62 @@ $(document).ready(function () {
         }).click();
     });
 
+    $(".sample").on("click", function () {
+        const sampleName = $(this).attr("sample") || "dog";
+        const sampleFile = `static/img/sample-${sampleName}.jpg`;
+
+        fetch(sampleFile)
+            .then(response => response.blob())
+            .then(blob => {
+                const file = new File([blob], `${sampleName}.png`, { type: "image/jpeg" });
+                onFileUpload(file);
+            })
+            .catch(error => {
+                console.error("Error loading sample image:", error);
+                alert("無法載入範例圖片，請稍後再試。");
+            });
+    });
+
     function onFileUpload(file) {
-        if (file && file.type.startsWith("image/")) {
+        const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
+
+        if (file && allowedTypes.includes(file.type)) {
+            if (file.type === "image/webp") {
+                // 如果是 WebP 圖片，則轉換為 PNG
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = new Image();
+                    img.onload = function () {
+                        const canvas = document.createElement("canvas");
+                        canvas.width = img.width;
+                        canvas.height = img.height;
+                        const ctx = canvas.getContext("2d");
+                        ctx.drawImage(img, 0, 0);
+                        canvas.toBlob(function (blob) {
+                            onFileUpload(blob);
+                        }, "image/png");
+                    }
+                    img.src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+                return;
+            }
+
+
             $(".image-after").hide();
             $(".image-after").css("z-index", "3"); // 去背圖層在滑桿上方
             $(".image-before img").attr("src", URL.createObjectURL(file));
             $(".label-before").hide();
             $(".label-after").hide();
+
             removeImageBackground(file);
-            $(".upload-card").fadeOut();
+
+            $(".upload-card").css({
+                "pointer-events": "none",
+                "opacity": "0.5"
+            });
         } else {
-            alert("請上傳一張圖片文件。");
+            alert("請上傳有效的圖片文件（JPEG、PNG 或 WebP）。");
         }
     }
 
@@ -58,7 +103,7 @@ $(document).ready(function () {
         if (ic) {
             $(ic.container).addClass("placeholder-wave");
             ic.setDragable(false);
-            ic.jumpToPosition({clientX: 1000});
+            ic.jumpToPosition({clientX: 100000});
         }
         var form = new FormData();
         form.append("file", imageFile, URL.createObjectURL(imageFile));
@@ -94,6 +139,11 @@ $(document).ready(function () {
             $(ic.container).removeClass("placeholder-wave");
             $(".upload-card").fadeIn();
             $(".image-after").show();
+
+            $(".upload-card").css({
+                "pointer-events": "auto",
+                "opacity": "1"
+            });
         });
         
     };
