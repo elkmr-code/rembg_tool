@@ -80,18 +80,23 @@ $(document).ready(function () {
             }
 
 
-            $(".image-after").hide();
-            $(".image-after").css("z-index", "3"); // 去背圖層在滑桿上方
+            $(".image-after").animate({
+                "z-index": "0",
+                "opacity": "0"
+            }, 150);
             $(".image-before img").attr("src", URL.createObjectURL(file));
             $(".label-before").hide();
             $(".label-after").hide();
-
-            removeImageBackground(file);
 
             $(".upload-card").css({
                 "pointer-events": "none",
                 "opacity": "0.5"
             });
+
+            $(".download-background-removed-image").css("visibility", "hidden");
+            
+            removeImageBackground(file);
+
         } else {
             alert("請上傳有效的圖片文件（JPEG、PNG 或 WebP）。");
         }
@@ -137,13 +142,19 @@ $(document).ready(function () {
                 ic.jumpToPosition({clientX: 0});
             }
             $(ic.container).removeClass("placeholder-wave");
-            $(".upload-card").fadeIn();
-            $(".image-after").show();
 
             $(".upload-card").css({
                 "pointer-events": "auto",
                 "opacity": "1"
             });
+
+            $(".image-after").animate({
+                "opacity": "1",
+                "z-index": "3"   // 去背圖層在滑桿上方
+            }, 20);
+
+            $(".download-background-removed-image a").attr("href", $(".image-after").attr("src"));
+            $(".download-background-removed-image").css("visibility", "visible");
         });
         
     };
