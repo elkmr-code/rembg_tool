@@ -144,6 +144,9 @@ h1 {
     cursor: grab;
     background-image: url("/static/img/background.jpg");
     background-repeat: repeat;
+    transition: width 0.5s ease-in-out , height 0.5s ease-in-out;
+    margin: auto;
+    border-radius: 18px;
 }
 
 .image-container:active {

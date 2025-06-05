@@ -81,11 +81,18 @@ $(document).ready(function () {
                 return;
             }
 
+            let fileUrl = URL.createObjectURL(file);
+            let image = new Image()
+            image.src = fileUrl;
+            image.onload = function () {
+                resizeContainer(image.width, image.height);
+            };
+
             $(".image-after").animate({
                 "z-index": "0",
                 "opacity": "0",
             }, 150);
-            $(".image-before img").attr("src", URL.createObjectURL(file));
+            $(".image-before img").attr("src", fileUrl);
             $(".label-before").hide();
             $(".label-after").hide();
 
@@ -200,6 +207,21 @@ $(document).ready(function () {
         });
     }
 });
+
+function resizeContainer(width, height) {
+    const container = document.querySelector(".image-container");
+    let ratio = width / height;
+    if (width > 800) {
+        width = 800;
+        height = Math.round(width / ratio);
+    }
+
+    console.log(`Resizing container to ${width}x${height}`);
+    if (container) {
+        container.style.width = `${width}px`;
+        container.style.height = `${height}px`;
+    }
+}
 
 function fireEmojis(...emojiNames) {
     const emojis = [];
