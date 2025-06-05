@@ -20,19 +20,19 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
   <link rel="stylesheet" href="/static/css/styles.css">
-  <!-- Logo for top-left corner -->
-  <a href="/" class="logo" style="display: flex; align-items: center; gap: 10px; text-decoration: none">
 
+</head>
+
+<body>
+  <div class="header">
     <!-- Logo Text -->
     <span style="font-size: 2rem; font-weight: 700; font-family: 'Segoe UI', Arial, sans-serif">
       <span style="color: #5a6872">Remove Image Background</span>
     </span>
-  </a>
-</head>
+  </div>
 
-<body>
   <!-- Upload Section -->
-  <section class="banner-upload-section">
+  <div class="banner-upload-section">
 
     <!-- Image Comparison Section -->
     <div class="container">
@@ -63,6 +63,13 @@
           <div class="label label-after">After</div>
         </div>
       </div>
+
+      <!-- 下載按鈕 -->
+      <div class="download-background-removed-image text-center mt-4" style="visibility: hidden;">
+        <a href="/static/img/after-image.png" class="btn btn-primary" download>
+          <i class="fas fa-download"></i> Download Processed Image
+        </a>
+      </div>
     </div>
 
     <div class="banner-upload-inner">
@@ -90,7 +97,7 @@
 
       </div>
     </div>
-  </section>
+  </div>
 
   <script src="/static/js/script.js"></script>
   <script src="/static/js/upload.js"></script>
