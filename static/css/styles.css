@@ -23,6 +23,7 @@ body {
     border-radius: 12px;
     margin-top: 50px;
     align-items: space-evenly;
+    padding: 30px;
 }
 
 .banner-upload-inner {
