@@ -155,7 +155,7 @@ $(document).ready(function () {
         form.append("file", imageFile, URL.createObjectURL(imageFile));
 
         var settings = {
-            "url": "/remove",
+            "url": "/removebg",
             "method": "POST",
             "timeout": 0,
             "processData": false,
