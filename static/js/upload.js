@@ -210,10 +210,17 @@ $(document).ready(function () {
 
 function resizeContainer(width, height) {
     const container = document.querySelector(".image-container");
-    let ratio = width / height;
-    if (width > 800) {
+    if (width > height) {
+        let ratio = height / width; 
+        console.log(width, height, ratio);
+        
         width = 800;
-        height = Math.round(width / ratio);
+        height = Math.round(width * ratio);
+    } else {
+        let ratio = width / height;
+        console.log(width, height, ratio);
+        height = 450;
+        width = Math.round(height * ratio);
     }
 
     console.log(`Resizing container to ${width}x${height}`);
