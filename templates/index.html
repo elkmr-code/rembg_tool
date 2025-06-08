@@ -5,96 +5,107 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Image Background Remover & Comparison</title>
-
+  
   <!-- 載入 JQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- 載入 Popper.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.1/dist/umd/popper.min.js"></script>
   <!-- 載入 Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+    crossorigin="anonymous"></script>
   <!-- 載入 Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
   <!-- 載入 Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-
-  <!-- 載入 Swiper CSS 和 JS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
   <link rel="stylesheet" href="/static/css/styles.css">
 
 </head>
 
 <body>
-  <div class="header">
-    <!-- Logo Text -->
-    <span style="font-size: 2rem; font-weight: 700; font-family: 'Segoe UI', Arial, sans-serif">
-      <span style="color: #5a6872">Remove Image Background</span>
-    </span>
-  </div>
-
-  <!-- Upload Section -->
-  <div class="banner-upload-section">
-
-    <!-- Image Comparison Section -->
-    <div class="container">
-      <h1>Image Comparison</h1>
-      <div class="image-compare main-compare">
-        <div class="image-container">
-          <!-- Background image (After) -->
-          <img src="/static/img/after-image.png" alt="After" class="image-after">
-          <!-- Foreground image (Before) -->
-          <div class="image-before" style="clip-path: inset(0 50% 0 0)">
-            <img src="/static/img/before-image.jpg" alt="Before">
-          </div>
-          <!-- Movable slider button -->
-          <div class="slider" style="left: 50%">
-            <div class="slider-button">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M15 18L9 12L15 6" stroke="white" stroke-width="2" stroke-linecap="round"
-                  stroke-linejoin="round" />
-              </svg>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M9 18L15 12L9 6" stroke="white" stroke-width="2" stroke-linecap="round"
-                  stroke-linejoin="round" />
+  <div class="content">
+    <div class="header">
+      <!-- Logo Text -->
+      <span>
+        <span style="color: #5a6872">Remove Image Background</span>
+      </span>
+    </div>
+    <!-- Upload Section -->
+    <div class="banner-upload-section">
+      <!-- Image Comparison Section -->
+      <div class="container">
+        <h1>Image Comparison</h1>
+        <div class="image-compare main-compare">
+          <div class="image-container">
+            <!-- Background image (After) -->
+            <img src="/static/img/after-image.png" alt="After" class="image-after">
+            <!-- Foreground image (Before) -->
+            <div class="image-before" style="clip-path: inset(0 50% 0 0)">
+              <img src="/static/img/before-image.jpg" alt="Before">
+            </div>
+            <!-- Movable slider button -->
+            <div class="slider" style="left: 50%">
+              <div class="slider-button">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M15 18L9 12L15 6" stroke="white" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M9 18L15 12L9 6" stroke="white" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </div>
+            </div>
+            <!-- Labels -->
+            <div class="label label-before">Before</div>
+            <div class="label label-after">After</div>
+            <!-- Comparison button -->
+            <div class="comparison-button" data-bs-toggle="tooltip" data-bs-placement="right"
+              title="Click to toggle comparison">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square-half"
+                viewBox="0 0 16 16">
+                <path
+                  d="M8 15V1h6a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1zm6 1a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2z" />
               </svg>
             </div>
           </div>
-          <!-- Labels -->
-          <div class="label label-before">Before</div>
-          <div class="label label-after">After</div>
+        </div>
+        <!-- 下載按鈕 -->
+        <div class="download-background-removed-image text-center mt-4" style="visibility: hidden;">
+          <a href="/static/img/after-image.png" class="btn btn-primary" download>
+            <i class="fas fa-download"></i> Download Processed Image
+          </a>
         </div>
       </div>
-
-      <!-- 下載按鈕 -->
-      <div class="download-background-removed-image text-center mt-4" style="visibility: hidden;">
-        <a href="/static/img/after-image.png" class="btn btn-primary" download>
-          <i class="fas fa-download"></i> Download Processed Image
-        </a>
-      </div>
-    </div>
-
-    <div class="banner-upload-inner">
-      <!-- Upload Section -->
-      <div class="banner-right">
-        <div class="upload-card" id="upload-card">
-          <div class="image-drop-area">
-            <div class="text-center">
-              <i class="fas fa-cloud-upload-alt fa-3x mb-3" style="color: #888;"></i>
-              <div class="upload-desc">
-                Drop a file<br>or<br>Upload image</a>
+  
+      <div class="banner-upload-inner">
+        <!-- Upload Section -->
+        <div class="banner-right">
+          <div class="upload-card" id="upload-card">
+            <div class="image-drop-area" data-bs-toggle="tooltip" data-bs-placement="right"
+              title="Drag and drop an image file here or click to upload">
+              <div class="text-center">
+                <i class="fas fa-cloud-upload-alt fa-3x mb-3" style="color: #888;"></i>
+                <div class="upload-desc">
+                  Drop a file<br>or<br>Upload image</a><br>
+                  ( .jpg .jpeg .png .webp )
+                </div>
+              </div>
+            </div>
+            <div class="sample-list">
+              <span class="sample-list-label">No image? Try one of these:</span>
+              <div class="sample-thumbs">
+                <span class="sample" sample="dog">🐕</span>
+                <span class="sample" sample="person">🧑</span>
+                <span class="sample" sample="car">🚗</span>
+                <span class="sample" sample="plant">🌱</span>
               </div>
             </div>
           </div>
-          <div class="sample-list">
-            <span class="sample-list-label">No image? Try one of these:</span>
-            <div class="sample-thumbs">
-              <span class="sample" sample="dog">🐕</span>
-              <span class="sample" sample="person">🧑</span>
-              <span class="sample" sample="car">🚗</span>
-              <span class="sample" sample="plant">🌱</span>
-            </div>
-          </div>
+  
         </div>
-
       </div>
     </div>
   </div>
@@ -102,7 +113,12 @@
   <script src="/static/js/emoji.js"></script>
   <script src="/static/js/script.js"></script>
   <script src="/static/js/upload.js"></script>
-
+  <script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+  </script>
 </body>
 
 </html>

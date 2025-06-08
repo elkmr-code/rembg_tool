@@ -56,6 +56,19 @@ $(document).ready(function () {
             });
     });
 
+    $(".comparison-button").on("click", function () {
+        const ic = ImageCompares.find((ic) =>
+            ic.container == document.querySelector(".main-compare")
+        );
+        if (ic) {
+            ic.jumpToPosition({ clientX: ic.currentPosition > 0 ? 0 : 100000 });
+            $(".comparison-button").css({
+                "transform": ic.currentPosition > 0 ? "rotate(0deg)" : "rotate(180deg)",
+            })
+        }
+        
+    });
+
     function onFileUpload(file) {
         const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
 
@@ -155,7 +168,7 @@ $(document).ready(function () {
         form.append("file", imageFile, URL.createObjectURL(imageFile));
 
         var settings = {
-            "url": "/remove",
+            "url": "/removebg",
             "method": "POST",
             "timeout": 0,
             "processData": false,
@@ -204,16 +217,27 @@ $(document).ready(function () {
                 "visibility",
                 "visible",
             );
+            $(".comparison-button").css({
+                "opacity": "1",
+                "pointer-events": "auto",
+            });
         });
     }
 });
 
 function resizeContainer(width, height) {
     const container = document.querySelector(".image-container");
-    let ratio = width / height;
-    if (width > 800) {
-        width = 800;
-        height = Math.round(width / ratio);
+    if (width > height) {
+        let ratio = height / width; 
+        console.log(width, height, ratio);
+        
+        width = window.innerWidth < 1000 ? window.innerWidth - 50 : 800; // 窄營幕
+        height = Math.round(width * ratio);
+    } else {
+        let ratio = width / height;
+        console.log(width, height, ratio);
+        height = 450;
+        width = Math.round(height * ratio);
     }
 
     console.log(`Resizing container to ${width}x${height}`);
@@ -230,10 +254,11 @@ function fireEmojis(...emojiNames) {
             emojis.push(OBJECT_EMOJIS.get(name));
         }
     })
+
+    console.log(`Firing emoji: ${emojis}`);
     
     for (let i = 1; i <= 10; i++) {
         emojis.forEach((emoji, index) => {
-            console.log(`Firing emoji: ${emoji}`);
             
             const span = document.createElement("span");
             span.textContent = emoji;

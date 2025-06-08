@@ -13,7 +13,7 @@ model = YOLO("yolo11n.pt")
 def index():
     return flask.render_template('index.html')
 
-@app.route('/remove', methods=['POST'])
+@app.route('/removebg', methods=['POST'])
 def remove_background():
     if 'file' not in flask.request.files:
         return "No file part", 400

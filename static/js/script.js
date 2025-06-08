@@ -28,7 +28,10 @@ class ImageCompare {
         document.addEventListener('touchend', this.endDrag.bind(this));
 
         // 點擊圖片直接跳到該位置
-        this.imageContainer.addEventListener('click', this.jumpToPosition.bind(this));
+        this.imageContainer.addEventListener('click', function (e) {
+            if (!this.dragable) return;
+            this.jumpToPosition(e);
+        }.bind(this));
 
         // 鍵盤控制
         document.addEventListener('keydown', this.handleKeyboard.bind(this));
@@ -46,12 +49,12 @@ class ImageCompare {
     setDragable(value) {
         this.dragable = value;
         // this.imageContainer.style.pointerEvents = 'none';
-        this.slider.querySelector(".slider-button").style.display = value ? 'block' : 'none';
+        this.slider.querySelector(".slider-button").style.opacity = value ? '1' : '0';
     }
 
     drag(e) {
         if (!this.isDragging || !this.dragable) return;
-
+        
         e.preventDefault();
         
         const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
