@@ -56,6 +56,16 @@ $(document).ready(function () {
             });
     });
 
+    $(".comparison-button").on("click", function () {
+        const ic = ImageCompares.find((ic) =>
+            ic.container == document.querySelector(".main-compare")
+        );
+        if (ic) {
+            ic.jumpToPosition({ clientX: ic.currentPosition > 0 ? 0 : 100000 });
+        }
+        
+    });
+
     function onFileUpload(file) {
         const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
 
@@ -204,6 +214,10 @@ $(document).ready(function () {
                 "visibility",
                 "visible",
             );
+            $(".comparison-button").css({
+                "opacity": "1",
+                "pointer-events": "auto",
+            });
         });
     }
 });
@@ -237,10 +251,11 @@ function fireEmojis(...emojiNames) {
             emojis.push(OBJECT_EMOJIS.get(name));
         }
     })
+
+    console.log(`Firing emoji: ${emojis}`);
     
     for (let i = 1; i <= 10; i++) {
         emojis.forEach((emoji, index) => {
-            console.log(`Firing emoji: ${emoji}`);
             
             const span = document.createElement("span");
             span.textContent = emoji;

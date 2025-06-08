@@ -134,12 +134,11 @@ h1 {
 .image-compare {
     background: white;
     border-radius: 12px;
-    overflow: hidden;
+    width: fit-content;
 }
 
 .image-container {
     position: relative;
-    width: auto;
     height: 500px;
     overflow: hidden;
     cursor: grab;
@@ -174,6 +173,26 @@ h1 {
     height: 100%;
     z-index: 0;
     transition: clip-path 0.1s ease-out;
+}
+
+.comparison-button {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 25px;
+    right: 25px;
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: none;
+    transition: all 0.2s ease;
+    z-index: 4;
+    color: white;
+    backdrop-filter: blur(10px);
+    opacity: 0;
 }
 
 .slider {
