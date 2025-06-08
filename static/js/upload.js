@@ -62,6 +62,9 @@ $(document).ready(function () {
         );
         if (ic) {
             ic.jumpToPosition({ clientX: ic.currentPosition > 0 ? 0 : 100000 });
+            $(".comparison-button").css({
+                "transform": ic.currentPosition > 0 ? "rotate(0deg)" : "rotate(180deg)",
+            })
         }
         
     });
@@ -228,7 +231,7 @@ function resizeContainer(width, height) {
         let ratio = height / width; 
         console.log(width, height, ratio);
         
-        width = 800;
+        width = window.innerWidth < 1000 ? window.innerWidth - 50 : 800; // 窄營幕
         height = Math.round(width * ratio);
     } else {
         let ratio = width / height;
